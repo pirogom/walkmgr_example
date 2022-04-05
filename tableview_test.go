@@ -73,6 +73,7 @@ func TestTv(t *testing.T) {
 	th.Add("레벨", 100).Add("성별", 100)
 	th.Add("직업", 100)
 	testTv := wm.TableView(tm, th.Get(), true, true)
+	tm.SetTv(testTv)
 
 	testTv.ItemActivated().Attach(func() {
 		currIdx := testTv.CurrentIndex()
