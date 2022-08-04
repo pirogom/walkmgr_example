@@ -12,6 +12,7 @@ import (
 func TestRadio(t *testing.T) {
 	wm := walkmgr.NewWin("RADIO BUTTON", 640, 480)
 
+	// 라디오 버튼은 반드시 그룹박스로 묶어야 합니다.
 	wm.HGroupBox("라디오 버튼 그룹")
 	radio1 := wm.RadioButton("라디오1", int(10))
 	radio2 := wm.RadioButton("라디오2", int(20))
@@ -23,6 +24,8 @@ func TestRadio(t *testing.T) {
 	_ = radio3
 
 	wm.PushButton("확인", func() {
+		// 라디오 버튼들중 암놈이나 Group 으로
+		// 라디오 버튼들을 관리하는 그룹을 통해서 체크된 버튼을 얻습니다.
 		checkedBtn := radio1.Group().CheckedButton()
 
 		if checkedBtn != nil {
