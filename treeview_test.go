@@ -8,6 +8,8 @@ import (
 	"github.com/pirogom/walkmgr"
 )
 
+var icon1 *walk.Icon
+
 type SampleTreeItem struct {
 	name     string
 	parent   *SampleTreeItem
@@ -48,7 +50,8 @@ func (d *SampleTreeItem) ChildAt(index int) walk.TreeItem {
 }
 
 func (d *SampleTreeItem) Image() interface{} {
-	return nil
+	return icon1
+	//return nil
 }
 
 func (d *SampleTreeItem) ResetChildren() error {
@@ -74,6 +77,8 @@ func (m *SampleTreeModel) RootAt(index int) walk.TreeItem {
 }
 
 func TestTreeView(t *testing.T) {
+	icon1, _ = walk.NewIconFromFile("./icon/icon1.ico")
+
 	wm := walkmgr.NewWin("트리뷰 예제", 640, 480)
 
 	tv, _ := walk.NewTreeView(wm.Parent())
