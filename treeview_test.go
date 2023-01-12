@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"testing"
 
 	"github.com/pirogom/walk"
@@ -9,42 +8,35 @@ import (
 )
 
 // under construction
- 
-func TestTreeView(t *testing.T) {
 
+func TestTreeView(t *testing.T) {
 	icon1, _ := walk.NewIconFromFile("./icon/icon1.ico")
 	icon2, _ := walk.NewIconFromFile("./icon/icon2.ico")
 
 	wm := walkmgr.NewWin("트리뷰 예제", 640, 480)
 
 	treeView := wm.NewTreeView()
-	item := treeView.AddItem("하하하하", icon1)
-	item2 := item.AddItem("히히히", icon2)
-	item2.AddItem("ㅋㅋㅋㅋ", icon1)
-	treeView.Update()
+	item := treeView.AddItem("1", icon1)
+	item2 := item.AddItem("1-1", icon2)
+	item2.AddItem("1-1-1", icon1)
+	item2.AddItem("1-1-2", icon2)
+	item2.AddItem("1-1-3", icon1)
+	item2.AddItem("1-1-4", icon2)
+	item2.AddItem("1-1-5", icon1)
+	item2.AddItem("1-1-6", icon2)
 
-	wm.Start()
-}
+	item3 := item.AddItem("1-2", icon2)
+	item3.AddItem("1-2-1", icon1)
+	item3.AddItem("1-2-2", icon2)
+	item3.AddItem("1-2-3", icon1)
+	item3.AddItem("1-2-4", icon2)
+	item3.AddItem("1-2-5", icon1)
+	item3.AddItem("1-2-6", icon2)
 
-func TestTreeView2(t *testing.T) {
-	var addIdx int
+	item4 := treeView.AddItem("2", icon1)
+	item4.AddItem("2-1", icon2)
 
-	icon1, _ := walk.NewIconFromFile("./icon/icon1.ico")
-	icon2, _ := walk.NewIconFromFile("./icon/icon2.ico")
-
-	wm := walkmgr.NewWin("트리뷰 예제2(추가)", 640, 480)
-
-	treeView := wm.NewTreeView()
-	item := treeView.AddItem("하하하하", icon1)
-	item2 := item.AddItem("히히히", icon2)
-	item2.AddItem("ㅋㅋㅋㅋ", icon1)
-	treeView.Update()
-
-	wm.PushButton("추가", func() {
-		addIdx++
-		treeView.AddItem(fmt.Sprintf("추가됨%d", addIdx), icon1)
-		treeView.Update()
-	})
+	treeView.Create()
 
 	wm.Start()
 }
