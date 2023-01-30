@@ -56,8 +56,9 @@ func TestTreeView2(t *testing.T) {
 
 	wm.PushButton("루트 추가", func() {
 		itemCnt++
-		treeView.AddItem(fmt.Sprintf("추가됨%d", itemCnt), icon2)
+		newItem := treeView.AddItem(fmt.Sprintf("추가됨%d", itemCnt), icon2)
 		treeView.UpdateItems()
+		treeView.SetCurrentItem(newItem)
 	})
 
 	wm.PushButton("서브 추가", func() {
@@ -70,9 +71,9 @@ func TestTreeView2(t *testing.T) {
 		}
 
 		itemCnt++
-		currItem.AddItem(fmt.Sprintf("추가된 서브아이템%d", itemCnt), icon2)
+		newItem := currItem.AddItem(fmt.Sprintf("추가된 서브아이템%d", itemCnt), icon2)
 		treeView.UpdateItems()
-		treeView.SetCurrentItem(currItem)
+		treeView.SetCurrentItem(newItem)
 		treeView.SetExpanded(currItem, true)
 
 	})
