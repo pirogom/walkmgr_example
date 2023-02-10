@@ -3,12 +3,11 @@ package main
 import (
 	"fmt"
 	"testing"
+	"time"
 
 	"github.com/pirogom/walk"
 	"github.com/pirogom/walkmgr"
 )
-
-// under construction
 
 func TestTreeView(t *testing.T) {
 	icon1, _ := walk.NewIconFromFile("./icon/icon1.ico")
@@ -76,6 +75,95 @@ func TestTreeView2(t *testing.T) {
 		treeView.SetCurrentItem(newItem)
 		treeView.SetExpanded(currItem, true)
 
+	})
+
+	wm.Start()
+}
+
+func TestTreeView3(t *testing.T) {
+	icon1, _ := walk.NewIconFromFile("./icon/icon1.ico")
+	icon2, _ := walk.NewIconFromFile("./icon/icon2.ico")
+
+	wm := walkmgr.NewWin("트리뷰 예제", 640, 480)
+
+	treeView := wm.NewTreeView()
+	treeView.AddItem("1", icon1)
+	treeView.AddItem("2", icon2)
+	treeView.AddItem("3", icon1)
+	treeView.UpdateItems()
+
+	wm.PushButton("선택 아이템 이름 변경", func() {
+		ci := treeView.CurrentItem()
+
+		if ci != nil {
+			ci.SetText(fmt.Sprintf("변경된 이름 - %d", time.Now().Unix()))
+			treeView.UpdateItems()
+			treeView.SetCurrentItem(ci)
+		}
+	})
+
+	wm.Start()
+}
+
+func TestTreeView4(t *testing.T) {
+	icon1, _ := walk.NewIconFromFile("./icon/icon1.ico")
+	icon2, _ := walk.NewIconFromFile("./icon/icon2.ico")
+
+	wm := walkmgr.NewWin("트리뷰 예제", 640, 480)
+
+	treeView := wm.NewTreeView()
+	treeView.AddItem("1", icon1)
+	treeView.AddItem("2", icon2)
+	treeView.AddItem("3", icon1)
+	treeView.AddItem("4", icon1)
+	treeView.AddItem("5", icon1)
+	treeView.AddItem("6", icon1)
+	treeView.AddItem("7", icon1)
+	treeView.AddItem("8", icon1)
+	treeView.UpdateItems()
+
+	treeView.Tv().CurrentItemChanged().Attach(func() {
+		ci := treeView.CurrentItem()
+		if ci != nil {
+			walkmgr.MsgBox(ci.Text(), wm.Window())
+		}
+	})
+
+	wm.Start()
+}
+
+func TestTreeView5(t *testing.T) {
+	icon1, _ := walk.NewIconFromFile("./icon/icon1.ico")
+	icon2, _ := walk.NewIconFromFile("./icon/icon2.ico")
+
+	wm := walkmgr.NewWin("트리뷰 예제", 640, 480)
+
+	treeView := wm.NewTreeView()
+	item1 := treeView.AddItem("1", icon1)
+	data1 := "This is data number 1"
+	item1.SetData(&data1)
+	item2 := treeView.AddItem("2", icon2)
+	data2 := "This is data number 2"
+	item2.SetData(&data2)
+	item3 := treeView.AddItem("3", icon1)
+	data3 := "This is data number 3"
+	item3.SetData(&data3)
+	treeView.UpdateItems()
+
+	treeView.Tv().CurrentItemChanged().Attach(func() {
+		ci := treeView.CurrentItem()
+		if ci != nil {
+			data := ci.Data().(*string)
+			if data != nil {
+				walkmgr.MsgBox("Item Data : "+*data, wm.Window())
+
+				fi := treeView.FindItem(data)
+
+				if fi != nil {
+					walkmgr.MsgBox("Find item from data : " + (*fi).Text())
+				}
+			}
+		}
 	})
 
 	wm.Start()
