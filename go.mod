@@ -4,7 +4,7 @@ go 1.20
 
 require (
 	github.com/pirogom/walk v0.0.0-20230128105705-492944454fc3
-	github.com/pirogom/walkmgr v0.0.0-20230623085246-4d06bbbfd6f1
+	github.com/pirogom/walkmgr v0.0.0-20230623090322-699613271773
 )
 
 require (
