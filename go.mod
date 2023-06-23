@@ -2,8 +2,6 @@ module github.com/pirogom/walkmgr_example
 
 go 1.20
 
-replace github.com/pirogom/walkmgr => C:\Users\pirogom\go\src\github.com\pirogom\walkmgr
-
 require (
 	github.com/pirogom/walk v0.0.0-20230128105705-492944454fc3
 	github.com/pirogom/walkmgr v0.0.0-20230623085246-4d06bbbfd6f1
