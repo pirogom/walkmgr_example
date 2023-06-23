@@ -14,10 +14,9 @@ func TestDialog(t *testing.T) {
 
 		dlg.PushButton("테스트", func() {})
 		dlg.PushButton("테스트1", func() {})
-		dlg.PushButton("테스트2", func() { dlg.Close() })
-		//dlg.IgnoreClosing()
+		dlg.PushButton("테스트2", func() { dlg.CloseDLG(0) })
 
-		dlg.Start()
+		dlg.StartDLG()
 	})
 
 	wm.Start()
