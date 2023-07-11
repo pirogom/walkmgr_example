@@ -11,7 +11,7 @@ import (
 func TestWebView(t *testing.T) {
 	wm := walkmgr.NewWin("웹뷰(Alert Disabled)", 640, 480)
 
-	wm.WebView("https://modu-print.tistory.com")
+	wm.WebView("https://modu-print.com")
 
 	wm.Start()
 }
@@ -19,7 +19,7 @@ func TestWebView(t *testing.T) {
 func TestWebViewWithAlert(t *testing.T) {
 	wm := walkmgr.NewWin("웹뷰(Alert Enabled)", 640, 480)
 
-	wm.WebViewWithAlert("https://modu-print.tistory.com")
+	wm.WebViewWithAlert("https://modu-print.com")
 
 	wm.Start()
 }
